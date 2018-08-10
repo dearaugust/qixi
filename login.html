@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script type="text/javascript" src="renxi/jquery.min.js"></script>
+    <script type="text/javascript" src="renxi/layer.js"></script>
+    <link rel="stylesheet" href="renxi/animate.css">
+    <link rel="stylesheet" href="renxi/layer.css">
+
+    <style>
+        body>#bg {
+            height: 100%;
+            width: 100%;
+            background: #ffe;
+            font-family: 'Montserrat', 'Roboto', 'Helvetica', 'Arial', sans-serif;
+            transition: all 2s;
+        }
+        p {
+            position: absolute;
+            bottom: 60%;
+            left: 25%;
+            right: 25%;
+            line-height: 1.5em;
+            text-align: center;
+            font-weight: 900;
+            text-transform: uppercase;
+            font-size: 30px;
+            color: white;
+            text-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+        }
+
+        p>span {
+            font-size: 12px;
+            font-weight: 200;
+            text-transform: none;
+            display: block;
+            padding-top: 15px;
+            letter-spacing: 0.5px;
+            font-weight: 400;
+            color: #E4F1FE;
+        }
+
+        p>span>a {
+            color: #E4F1FE;
+            position: relative;
+            font-weight: 900;
+            text-decoration: none;
+            border-bottom: 2px solid #E4F1FE;
+            text-transform: uppercase;
+            padding-bottom: 2px;
+            margin: 0 2px;
+            transition: .75s;
+        }
+
+        p>span>a:hover {
+            padding-bottom: 4px;
+            transition: .25s;
+        }
+
+        a.link {
+            position: absolute;
+            width: 10%;
+            top: 60%;
+            transition: 0.5s;
+            display: block;
+            border: 1px solid #BDC3C7;
+            background: #fff;
+            text-decoration: none;
+            padding: 10px 0;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+            border-radius: 10px;
+        }
+
+        a.link>span {
+            display: block;
+            text-align: center;
+            font-size: 18px;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        #catchme {
+            left: 25%;
+            z-index: 99;
+            color: #D91E18;
+        }
+
+        .no {
+            right: 25%;
+            color: black;
+        }
+
+        #bg {
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="bg">
+        <!-- <p>媳妇儿,
+            <br />想不想我帮你把购物车清空啊？
+            <span>给你做个选择题 ^_^
+                <br />--爱你的老公</span>
+        </p> -->
+        <a href="javascript:;" class="link layui-layer-molv" id="catchme">
+            <span>想</span>
+        </a>
+        <a href="javascript:;" class="link no">
+            <span>不想</span>
+        </a>
+    </div>
+    <script>
+        $('#catchme').hover(function () {
+            $(this).css('position', 'absolute').css('top', Math.random() * 90 + '%').css('left', Math.random() *
+                90 + '%');
+        });
+        $('#catchme').click(function () {
+            layer.alert('真的确定要我清空你的购物车吗', {
+                skin: 'layui-layer-molv' //样式类名
+                    ,
+                closeBtn: 0
+            }, function () {
+                layer.alert('程序出现错误，请点击确定重新选择', {
+                    skin: 'layui-layer-lan',
+                    closeBtn: 0,
+                    anim: 4 //动画类型
+                });
+            });
+        })
+        $('.no').click(function () {
+            layer.open({
+                content: '我猜你也不想 ^_^',
+                yes: function (index, layero) {
+                    //do something
+                    layer.close(index); //如果设定了yes回调，需进行手工关闭
+                    $('#bg').addClass('animated');
+                    $('#bg').addClass('zoomOut');
+                }
+            });
+        })
+    </script>
+</body>
+
+</html>
